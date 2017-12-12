@@ -59,7 +59,7 @@ RUN curl -L https://github.com/rawlingsj/semver-release-version/releases/downloa
 
 RUN yum install -y wget && wget https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz && \
   tar -C /usr/local -xzf go$GOLANG_VERSION.linux-amd64.tar.gz && \
-  rm go${GOLANG_VERSION}.linux-amd64.tar.gz 
+  rm go${GOLANG_VERSION}.linux-amd64.tar.gz
 
 ENV PATH $PATH:/usr/local/go/bin
 ENV PATH $PATH:/usr/local/glide
@@ -69,4 +69,6 @@ ENV PATH $PATH:/go/bin
 ENV GOPATH=/go
 
 RUN go get github.com/DATA-DOG/godog/cmd/godog
-CMD sleep infinity
+COPY start.sh /start.sh
+
+CMD ["start.sh"]
